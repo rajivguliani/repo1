@@ -1,9 +1,12 @@
 package com.promengine.service;
 
+import java.util.List;
 import java.util.Map;
 
 import com.promengine.bean.Cart;
 import com.promengine.config.ProductConfig;
+import com.promengine.config.PromotionConfig;
+import com.promengine.promotion.Promotion;
 
 public class PromotionEngine {
 
@@ -11,7 +14,8 @@ public class PromotionEngine {
 		// Calculate price without promotion
 		calculatePriceWithoutPromotion(pCart);
 
-		// TODO: Apply promotions
+		// Apply promotions
+		applyPromotions(pCart);
 
 		return pCart.getCartTotal();
 	}
@@ -31,4 +35,16 @@ public class PromotionEngine {
 		}
 		pCart.setCartTotal(cartTotal);
 	}
+
+	private void applyPromotions(Cart pCart) {
+		// Get all available promotions
+		List<Promotion> promotionList = PromotionConfig.getAllPromotions();
+
+		if (promotionList != null && promotionList.size() > 0) {
+			for (Promotion promotion : promotionList) {
+				promotion.applyPromotion(pCart);
+			}
+		}
+	}
+
 }
