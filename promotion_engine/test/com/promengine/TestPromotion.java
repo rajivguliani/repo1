@@ -139,4 +139,46 @@ class TestPromotion {
 
 		assertEquals(engine.calculatePrice(cart), 665);
 	}
+
+	/**
+	 * 50+30+30=110
+	 */
+	@Test
+	void checkMultiPromotion_1() {
+		items.put(PROD_A, 1);
+		items.put(PROD_B, 1);
+		items.put(PROD_C, 1);
+		items.put(PROD_D, 1);
+		cart.setItems(items);
+
+		assertEquals(engine.calculatePrice(cart), 110);
+	}
+
+	/**
+	 * 50+30+120=200
+	 */
+	@Test
+	void checkMultiPromotion_2() {
+		items.put(PROD_A, 1);
+		items.put(PROD_B, 1);
+		items.put(PROD_C, 4);
+		items.put(PROD_D, 4);
+		cart.setItems(items);
+
+		assertEquals(engine.calculatePrice(cart), 200);
+	}
+
+	/**
+	 * 50+30+90+60=230
+	 */
+	@Test
+	void checkMultiPromotion_3() {
+		items.put(PROD_A, 1);
+		items.put(PROD_B, 1);
+		items.put(PROD_C, 3);
+		items.put(PROD_D, 7);
+		cart.setItems(items);
+
+		assertEquals(engine.calculatePrice(cart), 230);
+	}
 }
