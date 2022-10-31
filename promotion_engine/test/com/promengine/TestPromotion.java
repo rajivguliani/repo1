@@ -181,4 +181,18 @@ class TestPromotion {
 
 		assertEquals(engine.calculatePrice(cart), 230);
 	}
+
+	/**
+	 * 130+130+50+45+45+30+60+30=520
+	 */
+	@Test
+	void checkAllPromotions_1() {
+		items.put(PROD_A, 7);
+		items.put(PROD_B, 5);
+		items.put(PROD_C, 2);
+		items.put(PROD_D, 4);
+		cart.setItems(items);
+
+		assertEquals(engine.calculatePrice(cart), 520);
+	}
 }
