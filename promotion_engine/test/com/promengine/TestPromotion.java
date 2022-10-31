@@ -57,4 +57,40 @@ class TestPromotion {
 
 		assertEquals(engine.calculatePrice(cart), 100);
 	}
+
+	/**
+	 * 130+130+50+50=360
+	 */
+	@Test
+	void checkPromotionA_1() {
+		items.put(PROD_A, 8);
+		cart.setItems(items);
+
+		assertEquals(engine.calculatePrice(cart), 360);
+	}
+
+	/**
+	 * 130+130+130+20=410
+	 */
+	@Test
+	void checkPromotionA_2() {
+		items.put(PROD_A, 9);
+		items.put(PROD_C, 1);
+		cart.setItems(items);
+
+		assertEquals(engine.calculatePrice(cart), 410);
+	}
+
+	/**
+	 * 130+130+50+50+30+15=405
+	 */
+	@Test
+	void checkPromotionA_3() {
+		items.put(PROD_A, 8);
+		items.put(PROD_B, 1);
+		items.put(PROD_D, 1);
+		cart.setItems(items);
+
+		assertEquals(engine.calculatePrice(cart), 405);
+	}
 }
